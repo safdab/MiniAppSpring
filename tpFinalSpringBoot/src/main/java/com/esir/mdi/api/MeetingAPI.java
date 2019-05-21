@@ -1,5 +1,0 @@
-package com.esir.mdi.api;
-
-public class MeetingAPI {
-
-}
