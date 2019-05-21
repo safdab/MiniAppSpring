@@ -1,0 +1,10 @@
+2019-05-21 08:46:06,990 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2019-05-21 08:46:57,213 [Worker-11: Importing Maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: test:testjpa:0.0.1-SNAPSHOT @ /home/safdab/Documents/esir2/mdi/tp/tpJPA/tpjpa2019sir-master/pom.xml.
+2019-05-21 08:46:57,785 [Worker-11: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /tpjpa2019sir-master/src/main/java
+2019-05-21 08:46:57,786 [Worker-11: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /tpjpa2019sir-master/src/main/resources
+2019-05-21 08:46:57,787 [Worker-11: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /tpjpa2019sir-master/src/test/java
+2019-05-21 08:46:57,873 [Worker-11: Importing Maven projects] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 1 sec
+2019-05-21 08:46:58,920 [Worker-9: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-05-21 08:46:58,927 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2019-05-21 08:46:58,939 [Worker-9: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-05-21 08:46:58,940 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/safdab/Documents/esir2/mdi/tp/tpJPA/tpjpa2019sir-master/src/test/resources
