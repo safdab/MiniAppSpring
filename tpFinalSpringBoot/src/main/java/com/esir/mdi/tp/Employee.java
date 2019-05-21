@@ -14,21 +14,13 @@ public class Employee {
 	
 	private String prenom;
 	private String email;
-	
-	private Departement departement;
+
 	
 	public Employee() {
 		
 	}
 	
-	public Employee(String name, String prenom, String email, Departement departement) {
-		this.setName(name);
-		this.setDepartement(departement);
-		this.prenom = prenom;
-		this.email = email;
-	}
-	
-	public Employee(String name,  String prenom, String email) {
+	public Employee(String name, String prenom, String email) {
 		this.setName(name);
 		this.prenom = prenom;
 		this.email = email;
@@ -48,19 +40,11 @@ public class Employee {
 		this.name = name;
 	}
 
-	@ManyToOne
-	public Departement getDepartement() {
-		return departement;
-	}
-
-	public void setDepartement(Departement departement) {
-		this.departement = departement;
-	}
 	
 	@Override
 	public String toString() {
 		return "Employee [id= " + id + ", name= "+ name + ", departement = "+
-					departement.getName()+ "]";
+					 "]";
 	}
 
 	public String getPrenom() {

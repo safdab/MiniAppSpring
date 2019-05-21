@@ -1,4 +1,4 @@
-package com.esir.mdi.tpJpa;
+package com.esir.mdi.tp;
 
 import java.util.List;
 
@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+
+import com.esir.mdi.tp.Employee;
 
 public class TestJpa {
 
@@ -38,10 +40,8 @@ public class TestJpa {
 	public void createEmployees() {
 		int numofEmployees = manager.createQuery("Select a From Employee a", Employee.class).getResultList().size();
 		if(numofEmployees == 0) {
-			Departement departement = new Departement("java");
-			manager.persist(departement);
-			manager.persist(new Employee("jakab", "Gipsz","moi@moi.com", departement));
-			manager.persist(new Employee("Captain", "Nemo","nemo@moi.com", departement));
+			manager.persist(new Employee("jakab", "Gipsz","moi@moi.com"));
+			manager.persist(new Employee("Captain", "Nemo","nemo@moi.com"));
 
 		}
 	}
