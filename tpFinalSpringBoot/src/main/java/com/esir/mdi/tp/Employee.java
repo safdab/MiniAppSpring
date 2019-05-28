@@ -1,43 +1,52 @@
 package com.esir.mdi.tp;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Employee {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(name="name")
 	private String name;
 	
+	@Column(name="prenom")
 	private String prenom;
+	
+	@Column(name="email")
 	private String email;
 	
-	private Departement departement;
+	@ManyToOne
+	@JsonIgnore
+	private Meeting meeting;
 	
 	public Employee() {
-		
+		super();
 	}
 	
-	public Employee(String name, String prenom, String email, Departement departement) {
-		this.setName(name);
-		this.setDepartement(departement);
-		this.prenom = prenom;
-		this.email = email;
-	}
-	
-	public Employee(String name,  String prenom, String email) {
+	public Employee(String name, String prenom, String email, Meeting meeting) {
 		this.setName(name);
 		this.prenom = prenom;
 		this.email = email;
+		this.meeting = meeting;
 	}
 	
-	@Id
-	@GeneratedValue
+
 	public Long getId() {
 		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -48,20 +57,8 @@ public class Employee {
 		this.name = name;
 	}
 
-	@ManyToOne
-	public Departement getDepartement() {
-		return departement;
-	}
-
-	public void setDepartement(Departement departement) {
-		this.departement = departement;
-	}
 	
-	@Override
-	public String toString() {
-		return "Employee [id= " + id + ", name= "+ name + ", departement = "+
-					departement.getName()+ "]";
-	}
+
 
 	public String getPrenom() {
 		return prenom;
@@ -77,5 +74,13 @@ public class Employee {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Meeting getMeeting() {
+		return meeting;
+	}
+
+	public void setMeeting(Meeting meeting) {
+		this.meeting = meeting;
 	}
 }
