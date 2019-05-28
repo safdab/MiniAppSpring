@@ -2,32 +2,40 @@ package com.esir.mdi.tp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Employee {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private String name;
 	
 	private String prenom;
 	private String email;
-
+	
+	@ManyToOne
+	@JsonIgnore
+	private Meeting meeting;
 	
 	public Employee() {
-		
+		super();
 	}
 	
-	public Employee(String name, String prenom, String email) {
+	public Employee(String name, String prenom, String email, Meeting meeting) {
 		this.setName(name);
 		this.prenom = prenom;
 		this.email = email;
+		this.meeting = meeting;
 	}
 	
-	@Id
-	@GeneratedValue
+
 	public Long getId() {
 		return id;
 	}
@@ -65,5 +73,13 @@ public class Employee {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Meeting getMeeting() {
+		return meeting;
+	}
+
+	public void setMeeting(Meeting meeting) {
+		this.meeting = meeting;
 	}
 }
