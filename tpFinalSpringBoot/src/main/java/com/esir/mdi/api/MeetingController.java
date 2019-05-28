@@ -25,31 +25,32 @@ import com.esir.mdi.tp.repo.MeetingRepository;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8080")
-@RequestMapping("/api/polls")
+@RequestMapping("/api")
 public class MeetingController {
 	
 	
 	@Autowired
 	private MeetingRepository repository;
 	
-	//aggregate root
-	
+		
 	@GetMapping("/meetings")
-	List<Meeting> getAllMeetings() {
+	public List<Meeting> getAllMeetings() {
 		return repository.findAll();
 	}
 	
 	
 	@PostMapping("/meetings")
-	Meeting add(@RequestBody Meeting newMeeting) {
-		return repository.save(newMeeting);
+	public ResponseEntity<Meeting> add(@RequestBody Meeting newMeeting) {
+		
+		
+		return new ResponseEntity<>( repository.save(newMeeting), HttpStatus.CREATED);
 	}
 	
 	
 	//single item 
 	
 	@GetMapping("/meetings/{id}")
-	Meeting getOne(@PathVariable Long id) {
+	public Meeting getOne(@PathVariable Long id) {
 		return repository.findById(id)
 				.orElseThrow(() -> new MeetingNotFoundException(id));
 	}
@@ -57,7 +58,7 @@ public class MeetingController {
 	//Liste les participants à un meeting
 	
 	@GetMapping("/meetings/{id}/employees")
-	ResponseEntity<List<Employee>> getAEmployeeMeeting(@PathVariable Long id) {
+	public ResponseEntity<List<Employee>> getAEmployeeMeeting(@PathVariable Long id) {
 		Optional<Meeting> m = repository.findById(id);
 		
 		if(!m.isPresent()) {
@@ -86,7 +87,7 @@ public class MeetingController {
 	
 	
 	@DeleteMapping("/meetings/{id}")
-	void delete(@PathVariable Long id) {
+	public void delete(@PathVariable Long id) {
 		repository.deleteById(id);
 	}
 	

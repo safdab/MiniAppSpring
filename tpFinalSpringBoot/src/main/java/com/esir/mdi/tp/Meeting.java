@@ -4,11 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Meeting {
@@ -17,13 +20,17 @@ public class Meeting {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long Id;
 
+	@Column(name="description")
 	private String description;
 
 	@OneToMany(mappedBy = "meeting",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Employee> participants;
 
+	@Column(name="title")
 	private String title;
 
+	@Column(name="dateMeeting")
+	@Temporal(TemporalType.DATE)
 	private Date dateMeeting;
 
 

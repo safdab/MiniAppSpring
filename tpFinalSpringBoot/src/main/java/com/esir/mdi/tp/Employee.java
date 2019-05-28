@@ -1,5 +1,6 @@
 package com.esir.mdi.tp;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,9 +16,13 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(name="name")
 	private String name;
 	
+	@Column(name="prenom")
 	private String prenom;
+	
+	@Column(name="email")
 	private String email;
 	
 	@ManyToOne
@@ -53,11 +58,7 @@ public class Employee {
 	}
 
 	
-	@Override
-	public String toString() {
-		return "Employee [id= " + id + ", name= "+ name + ", departement = "+
-					 "]";
-	}
+
 
 	public String getPrenom() {
 		return prenom;
