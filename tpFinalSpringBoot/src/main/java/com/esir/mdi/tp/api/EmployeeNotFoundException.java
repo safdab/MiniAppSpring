@@ -1,4 +1,4 @@
-package com.esir.mdi.api;
+package com.esir.mdi.tp.api;
 
 public class EmployeeNotFoundException extends RuntimeException{
 
