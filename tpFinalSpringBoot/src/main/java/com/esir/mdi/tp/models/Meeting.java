@@ -1,5 +1,8 @@
-package com.esir.mdi.tp;
+package com.esir.mdi.tp.models;
 
+import com.esir.mdi.tp.models.Employee;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,11 +23,8 @@ public class Meeting {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long Id;
 
-	@Column(name="description")
-	private String description;
-
-	@OneToMany(mappedBy = "meeting",cascade = CascadeType.ALL,orphanRemoval = true)
-	private List<Employee> participants;
+	@OneToMany(mappedBy = "meeting",cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Employee> participants = new ArrayList<>();
 
 	@Column(name="title")
 	private String title;
@@ -35,11 +35,10 @@ public class Meeting {
 
 
 	public Meeting() {
-		super();
+
 	}
-	public Meeting(String description, String title, Date date, List<Employee> participants) {
+	public Meeting(String title, Date date, List<Employee> participants) {
 		this.title = title;
-		this.description = description;
 		this.dateMeeting = date;
 		this.participants = participants;
 	}
@@ -53,14 +52,6 @@ public class Meeting {
 		Id = id;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public List<Employee> getParticipants() {
 		return participants;
 	}
@@ -71,6 +62,10 @@ public class Meeting {
 	
 	public void addParticipant(Employee em) {
 		this.participants.add(em);
+	}
+
+	public void deleteParticipant(Long id) {
+		this.participants.remove(id);
 	}
 
 	public String getTitle() {
