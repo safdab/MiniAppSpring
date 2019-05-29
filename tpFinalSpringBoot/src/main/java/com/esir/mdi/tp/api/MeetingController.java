@@ -22,13 +22,13 @@ public class MeetingController {
 	
 	
 	@Autowired
-	private MeetingRepository repository;
+	private MeetingRepository meetingRepository;
 	
 		
 	@GetMapping("/meetings")
 	public ResponseEntity<List<Meeting>> getAllMeetings() {
 
-		List<Meeting> meetings = repository.findAll();
+		List<Meeting> meetings = meetingRepository.findAll();
 		return new ResponseEntity<>(meetings, HttpStatus.OK);
 
 	}
@@ -36,16 +36,14 @@ public class MeetingController {
 	
 	@PostMapping("/meetings")
 	public ResponseEntity<Meeting> add(@RequestBody Meeting newMeeting) {
-		Meeting meeting = repository.save(newMeeting);
+		Meeting meeting = meetingRepository.save(newMeeting);
 		return new ResponseEntity<>(meeting, HttpStatus.CREATED);
 	}
+
 	
-	
-	//single item 
-	
-	@GetMapping("/meetings/{id}")
-	public ResponseEntity<Meeting> getOne(@PathVariable Long id) {
-		Optional<Meeting> optionalMeeting = repository.findById(id);
+	@GetMapping("/meetings/{meetingId}")
+	public ResponseEntity<Meeting> getOne(@PathVariable Long meetingId) {
+		Optional<Meeting> optionalMeeting = meetingRepository.findById(meetingId);
 
 		if(!optionalMeeting.isPresent()){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -53,24 +51,12 @@ public class MeetingController {
 
 		return new ResponseEntity<>(optionalMeeting.get(), HttpStatus.OK);
 	}
-	
-	//Liste les participants à un meeting
-	
-	@GetMapping("/meetings/{id}/employees")
-	public ResponseEntity<List<Employee>> getAEmployeeMeeting(@PathVariable Long id) {
-		Optional<Meeting> m = repository.findById(id);
-		
-		if(!m.isPresent()) {
-			throw new MeetingNotFoundException(id);
-		}
 
-		return new ResponseEntity<>(m.get().getParticipants(), HttpStatus.OK);
-	}
 	
 	
-	@PutMapping("/meetings/{id}")
-	public ResponseEntity<Meeting> replace(@RequestBody Meeting newMeeting, @PathVariable Long id) {
-		Optional<Meeting> optionalMeeting = repository.findById(id);
+	@PutMapping("/meetings/{meetingId}")
+	public ResponseEntity<Meeting> replace(@RequestBody Meeting newMeeting, @PathVariable Long meetingId) {
+		Optional<Meeting> optionalMeeting = meetingRepository.findById(meetingId);
 
 		if(!optionalMeeting.isPresent()){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -92,42 +78,25 @@ public class MeetingController {
 			}
 		}
 
-		Meeting updated = repository.save(oldMeeting);
+		Meeting updated = meetingRepository.save(oldMeeting);
 
 		return new ResponseEntity<>(updated, HttpStatus.OK);
 
 	}
 	
 	
-	@DeleteMapping("/meetings/{id}")
-	public ResponseEntity<Meeting> delete(@PathVariable Long id) {
-		Optional<Meeting> optionalMeeting = repository.findById(id);
+	@DeleteMapping("/meetings/{meetingId}")
+	public ResponseEntity<?> delete(@PathVariable Long meetingId) {
+		Optional<Meeting> optionalMeeting = meetingRepository.findById(meetingId);
 
 		if(!optionalMeeting.isPresent()){
-
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 
-		return new ResponseEntity<>(optionalMeeting.get(), HttpStatus.OK);
+		meetingRepository.deleteById(meetingId);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	/**
-	 * Ajoute un employee dans un meeting
-	 * @param id
-	 * @param employee
-	 * @return
-	 */
-	@PostMapping("/meetings/{idMeeting}/employees")
-	public ResponseEntity<Meeting> addEmployee(@PathParam("idMeeting") Long id, @Valid Employee employee) {
-		Optional<Meeting> m = repository.findById(id);
-		
-		if(!m.isPresent()) {
-			throw new MeetingNotFoundException(id);
-		}
-		Meeting m1 = m.get();
-		m1.addParticipant(employee);
-		repository.save(m1);
-		
-		return new ResponseEntity<>(m1, HttpStatus.OK);
-	}
+
 
 }

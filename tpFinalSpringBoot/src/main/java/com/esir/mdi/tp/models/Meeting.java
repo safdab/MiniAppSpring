@@ -23,7 +23,7 @@ public class Meeting {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long Id;
 
-	@OneToMany(mappedBy = "meeting",cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "meeting",cascade = CascadeType.ALL)
 	private List<Employee> participants = new ArrayList<>();
 
 	@Column(name="title")
