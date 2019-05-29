@@ -16,7 +16,7 @@ import com.esir.mdi.tp.models.Meeting;
 import com.esir.mdi.tp.repo.MeetingRepository;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/api")
 public class MeetingController {
 	
