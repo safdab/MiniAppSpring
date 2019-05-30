@@ -1,1 +1,2 @@
-## TP MDI : Mini Application Spring JPA
+## TP MDI : Mini Application - Spring JPA VueJS
+
