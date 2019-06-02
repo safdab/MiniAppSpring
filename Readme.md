@@ -2,10 +2,8 @@
 
 ## Lancement du serveur avec docker
 
-### Créer une base de données MySQL 
-#### utilisateur : root / mot de passe : root
-#### nom de la bdd : meeting
-
 ### ./run.sh 
-#### 
+#### build du projet & du docker
+#### lancement du docker
+#### url : http://mdb:8080/api
 
