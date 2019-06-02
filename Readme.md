@@ -2,8 +2,7 @@
 
 ## Lancement du serveur avec docker
 
-### ./run.sh 
-#### build du projet & du docker
-#### lancement du docker
-#### url : http://mdb:8080/api
+### Se mettre dans le repertoire du projet et executer le script run.sh 
+#### L'url pour contacter le server est le suivant http://localhost:8080/api 
+
 
